@@ -1,0 +1,184 @@
+<div class="grid-container">
+  <mat-toolbar color="primary">
+    <span>Part 2: Aequilibrium | The Transformation Company</span>
+  </mat-toolbar>
+  <mat-grid-list cols="2" rowHeight="350px">
+    <mat-grid-tile colspan="2">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            Add transformers to the war
+          </mat-card-title>
+        </mat-card-header>
+        <hr />
+        <mat-card-content class="dashboard-card-content">
+          <div>
+            <mat-tab-group>
+              <mat-tab label="Method 1">
+                <p>
+                  Method 1 let you input the transformer's name, select group and its tech specs.
+                </p>
+                <div>
+                  <div>
+                    <mat-form-field style="margin-right: 10px;">
+                      <input matInput required placeholder="Transformer name" [(ngModel)]="transformer.Name">
+                    </mat-form-field>
+                    <mat-form-field style="margin-right: 10px;">
+                      <mat-select matNativeControl required placeholder="Group" [(ngModel)]="transformer.Group">
+                        <mat-option *ngFor="let group of groups" [value]="group.value">
+                          {{group.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Strength" [(ngModel)]="transformer.Strength">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Intelligence" [(ngModel)]="transformer.Intelligence">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Speed" [(ngModel)]="transformer.Speed">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Endurance" [(ngModel)]="transformer.Endurance">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Rank" [(ngModel)]="transformer.Rank">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Courage" [(ngModel)]="transformer.Courage">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Firepower" [(ngModel)]="transformer.Firepower">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="tech-mat-form-field">
+                      <mat-select matNativeControl required placeholder="Skill" [(ngModel)]="transformer.Skill">
+                        <mat-option *ngFor="let rank of ranks" [value]="rank.value">
+                          {{rank.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="primary" (click)="addTransformer()">Add</button>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Method 2">
+                <p>
+                  Method 2 let you input the transformer's name, select group, and randomly generate tech specs.
+                </p>
+                <div>
+                  <div>
+                    <mat-form-field style="margin-right: 10px;">
+                      <input matInput required placeholder="Transformer name" [(ngModel)]="transName">
+                    </mat-form-field>
+                    <mat-form-field style="margin-right: 10px;">
+                      <mat-select matNativeControl required placeholder="Group" [(ngModel)]="transGroup">
+                        <mat-option *ngFor="let group of groups" [value]="group.value">
+                          {{group.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="primary" (click)="addTransByNameAndGroup()">Add</button>
+                  </div>
+                </div>
+              </mat-tab>
+              <mat-tab label="Method 3">
+                <p>
+                  Method 3 let you input the transformer's name, group, and tech specs in a string.
+                </p>
+                <div>
+                  <div>
+                    <mat-form-field style="margin-right: 10px;">
+                      <input matInput required placeholder="Transformer string" [(ngModel)]="transDescription">
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <button mat-raised-button color="primary" (click)="addTransByDescription()">Add</button>
+                  </div>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              Transformers in the war
+            </mat-card-title>
+          </mat-card-header>
+          <hr />
+          <mat-card-content class="dashboard-card-content">
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let item of transformers">
+                <mat-checkbox [(ngModel)]="item.selected">{{transformerToString(item.transformer)}}</mat-checkbox>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+          <div *ngIf="transformers.length > 0">
+            <button mat-raised-button color="primary" (click)="removeTransformer()">Remove selected transformer</button>
+          </div>
+        </mat-card>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              The result of fighting
+            </mat-card-title>
+          </mat-card-header>
+          <hr />
+          <mat-card-content class="dashboard-card-content">
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let item of result">
+                {{item}}
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+          <div *ngIf="transformers.length > 0">
+            <button mat-raised-button color="primary" (click)="fight()">Fighting!</button>
+          </div>
+        </mat-card>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
