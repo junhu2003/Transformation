@@ -16,6 +16,11 @@ export interface Transformer {
   Skill: number;  
 }
 
+export interface TransformerListItem {
+  transformer: Transformer;
+  selected: boolean;
+}
+
 @Component({
   selector: 'app-transformation-dashboard',
   templateUrl: './transformation-dashboard.component.html',
@@ -58,7 +63,7 @@ export class TransformationDashboardComponent {
 
   transDescription: string = '';
 
-  transformers: Array<object> = [];
+  transformers: Array<TransformerListItem> = [];
 
   result: Array<string> = [];
 
